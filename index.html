@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sleep Calculator - Find Your Perfect Bedtime & Wake-up Time | WakeWell</title>
+    <meta name="description" content="Use our free sleep cycle calculator to discover the best time to go to bed and wake up. Optimize your sleep based on 90-minute cycles to feel refreshed and energized.">
+    <link rel="canonical" href="https://wakewell.com/"> <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        /* Adds a subtle fade effect to the top and bottom of the picker */
+        .digital-picker {
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+        }
+        /* Style for the list items that are 'selected' by JavaScript */
+        .number-list li.selected {
+            @apply text-sky-500 scale-110;
+        }
+        /* Style for the open state of the FAQ accordion */
+        details[open] summary .chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
+
+    <div class="bg-white rounded-3xl shadow-2xl shadow-slate-200 p-6 sm:p-10 w-full max-w-lg text-center relative overflow-hidden">
+        
+        <header>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">The Ultimate Sleep Cycle Calculator</h1>
+            <h2 class="mt-2 text-base sm:text-lg text-slate-600">Calculate your ideal bedtime to wake up feeling refreshed and energized.</h2>
+        </header>
+
+        <main class="mt-8">
+            <div class="flex items-center justify-center space-x-3 sm:space-x-4 mb-8">
+                <span class="text-sm sm:text-base text-slate-600">I want to...</span>
+                <label for="modeToggle" class="flex items-center cursor-pointer">
+                    <div class="relative">
+                        <input type="checkbox" id="modeToggle" class="sr-only">
+                        <div class="block bg-slate-200 w-14 h-8 rounded-full"></div>
+                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                    </div>
+                </label>
+                <span class="text-sm sm:text-base font-bold text-slate-900 w-24 text-left" id="modeLabel">wake up at</span>
+            </div>
+            
+            <style>
+                input:checked ~ .dot { transform: translateX(100%); background-color: #38bdf8; }
+                input:checked ~ .block { background-color: #bae6fd; }
+            </style>
+
+            <div class="digital-picker h-48 sm:h-52 relative w-full max-w-xs mx-auto mb-8">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="h-16 sm:h-20 w-full border-y-2 border-slate-200/80"></div>
+                </div>
+                <div class="flex justify-center items-center h-full">
+                    <div class="picker-column h-full flex-1 overflow-hidden cursor-grab active:cursor-grabbing"><ul class="number-list" id="hours-list"></ul></div>
+                    <span class="picker-separator text-4xl font-bold text-slate-300 pb-2">:</span>
+                    <div class="picker-column h-full flex-1 overflow-hidden cursor-grab active:cursor-grabbing"><ul class="number-list" id="minutes-list"></ul></div>
+                    <span class="picker-separator text-4xl font-bold text-slate-300 pb-2">:</span>
+                    <div class="picker-column h-full flex-1 overflow-hidden cursor-grab active:cursor-grabbing"><ul class="number-list" id="seconds-list"></ul></div>
+                </div>
+            </div>
+             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button id="calculateBtn" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 shadow-lg shadow-sky-500/30 hover:shadow-xl hover:shadow-sky-500/40 transform hover:-translate-y-0.5">Calculate Bedtime</button>
+                <button id="sleepNowBtn" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3 px-6 rounded-full transition-colors duration-300">😴 Sleep Now</button>
+            </div>
+            
+            <div class="results mt-8 text-left space-y-4" id="results">
+                <div class="cycle-chart-container" id="cycleChartContainer"></div>
+                </div>
+            
+            <div class="tip-container mt-6" id="tipContainer">
+                </div>
+
+            <section class="mt-12 pt-8 border-t border-slate-200 text-left">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">How It Works: The Science of a Great Night's Sleep</h2>
+                <p class="text-slate-600 leading-relaxed">
+                    Our bedtime calculator isn't based on guesswork. It uses the science of <strong class="font-bold text-slate-700">90-minute sleep cycles</strong>. A typical night's sleep consists of several cycles through different <strong class="font-bold text-slate-700">stages of sleep</strong>, including <strong class="font-bold text-slate-700">light sleep, deep sleep, and REM sleep</strong>. Waking up at the end of a cycle, rather than in the middle of one, is the key to avoiding <strong class="font-bold text-slate-700">sleep inertia</strong> (that groggy, morning-after feeling).
+                </p>
+                <h2 class="mt-8 text-2xl font-bold text-slate-900 mb-4">Find Your Perfect Sleep Schedule</h2>
+                <p class="text-slate-600 leading-relaxed">
+                    Whether you need to wake up at 6am for work or want to find the <strong class="font-bold text-slate-700">best time to go to bed</strong>, our tool helps you build a better <strong class="font-bold text-slate-700">sleep schedule</strong>. By aligning your sleep with your body's natural rhythms, you can <strong class="font-bold text-slate-700">optimize your sleep cycle</strong> and improve your overall well-being.
+                </p>
+            </section>
+
+            <section class="mt-8 pt-8 border-t border-slate-200 text-left">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Frequently Asked Questions</h2>
+                <div class="space-y-2">
+                    <details class="py-2 border-b border-slate-200 group">
+                        <summary class="font-bold text-slate-800 cursor-pointer list-none flex justify-between items-center">
+                            How long is a human sleep cycle?
+                            <span class="chevron transition-transform duration-300 text-sky-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+                            </span>
+                        </summary>
+                        <p class="text-slate-600 mt-2 leading-relaxed">A complete sleep cycle typically lasts about 90 minutes. Our calculator uses this as a baseline to recommend the best times to wake up.</p>
+                    </details>
+                    <details class="py-2 border-b border-slate-200 group">
+                        <summary class="font-bold text-slate-800 cursor-pointer list-none flex justify-between items-center">
+                            Is it better to wake up during light sleep?
+                            <span class="chevron transition-transform duration-300 text-sky-500">
+                                <svg xmlns="http://www.w.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+                            </span>
+                        </summary>
+                        <p class="text-slate-600 mt-2 leading-relaxed">Yes. Waking up during a light sleep stage, which usually occurs at the end of a 90-minute cycle, helps you feel more alert and refreshed than being woken up from deep sleep.</p>
+                    </details>
+                    <details class="py-2 border-b border-slate-200 group">
+                        <summary class="font-bold text-slate-800 cursor-pointer list-none flex justify-between items-center">
+                             How much sleep do I really need?
+                            <span class="chevron transition-transform duration-300 text-sky-500">
+                                <svg xmlns="http://www.w.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+                            </span>
+                        </summary>
+                        <p class="text-slate-600 mt-2 leading-relaxed">Most adults need 7-9 hours of sleep, which corresponds to 5-6 full sleep cycles. Our tool shows you options for 4, 5, and 6 cycles so you can choose what works for you.</p>
+                    </details>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="mt-12 pt-8 border-t border-slate-200">
+            <nav class="flex justify-center items-center space-x-4 text-sm text-slate-500 mb-4">
+                <a href="/" class="hover:text-sky-500 transition-colors">Home</a>
+                <a href="#" class="hover:text-sky-500 transition-colors">Blog</a>
+                <a href="#" class="hover:text-sky-500 transition-colors">About</a>
+            </nav>
+            <p class="text-xs text-slate-400">Made with ❤️ by WakeWell</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

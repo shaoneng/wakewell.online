@@ -1,0 +1,137 @@
+/* ========================================================================= */
+/* 1. 全局重置与基础样式 (无变化)                                           */
+/* ========================================================================= */
+/* ... 此部分样式保持不变 ... */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Nunito', 'Helvetica Neue', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background-color: #F0F7FF; color: #0A192F; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+
+/* ========================================================================= */
+/* 2. 主容器与装饰 (无变化)                                                 */
+/* ========================================================================= */
+/* ... 此部分样式保持不变 ... */
+.container { background-color: white; padding: 30px 40px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0, 80, 179, 0.1); text-align: center; width: 100%; max-width: 420px; position: relative; overflow: hidden; }
+.decorations { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+.decorations .moon { position: absolute; top: 20px; right: 30px; color: #FFDDAA; opacity: 0.8; }
+.decorations .star { position: absolute; color: #FFDDAA; opacity: 0.7; animation: twinkle 4s ease-in-out infinite; }
+.decorations .star1 { top: 50px; left: 40px; width: 16px; height: 16px; animation-delay: 0s; }
+.decorations .star2 { top: 80px; right: 50px; width: 12px; height: 12px; animation-delay: 1.5s; }
+@keyframes twinkle { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } }
+
+/* ========================================================================= */
+/* 3. 模式切换开关 (无变化)                                                 */
+/* ========================================================================= */
+/* ... 此部分样式保持不变 ... */
+.mode-switcher { display: flex; justify-content: center; align-items: center; margin-bottom: 25px; }
+.mode-text { font-size: 1.1em; font-weight: 700; color: #555; margin: 0 12px; }
+.switch { position: relative; display: inline-block; width: 54px; height: 30px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 30px; }
+.slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: #89CFF0; }
+input:checked + .slider:before { transform: translateX(24px); }
+
+
+/******************************************************************/
+/* ↓↓↓ 这里是新增的样式，替换掉了旧的时钟样式 ↓↓↓     */
+/******************************************************************/
+/* 4. 数字滚轮选择器 (Digital Picker)                                 */
+/* ========================================================================= */
+
+.digital-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 210px; /* 3 * 70px (显示3行) */
+    position: relative;
+    width: 80%;
+    margin: 20px auto 30px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+}
+
+.picker-highlight {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 70px; /* 和列表项高度一致 */
+    transform: translateY(-50%);
+    border-top: 2px solid #EAE6FF;
+    border-bottom: 2px solid #EAE6FF;
+    pointer-events: none; /* 让鼠标事件穿透 */
+}
+
+.picker-column {
+    height: 100%;
+    overflow: hidden;
+    touch-action: none; /* 禁用默认触摸滚动 */
+    cursor: grab;
+}
+.picker-column:active {
+    cursor: grabbing;
+}
+
+.number-list {
+    list-style: none;
+    padding: 0;
+    /* JS会设置transform */
+}
+
+.number-list li {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.number-list li.selected {
+    color: #6DD5FA;
+    transform: scale(1.1);
+}
+
+.picker-separator {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #EAE6FF;
+    margin: 0 10px;
+    align-self: center; /* 垂直居中 */
+    transform: translateY(-5px); /* 视觉微调 */
+}
+/******************************************************************/
+/* ↑↑↑ 这里是新增的样式，替换掉了旧的时钟样式 ↑↑↑     */
+/******************************************************************/
+
+/* ========================================================================= */
+/* 5. 按钮 (无变化)                                                        */
+/* ========================================================================= */
+/* ... 此部分样式保持不变 ... */
+#calculateBtn { background-color: #6DD5FA; color: white; border: none; padding: 16px 35px; font-size: 1.25em; font-weight: 700; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease-out, box-shadow 0.3s; box-shadow: 0 4px 15px rgba(109, 213, 250, 0.4); }
+#calculateBtn:hover { background-color: #29B6F6; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(109, 213, 250, 0.5); }
+#calculateBtn:active { transform: translateY(0); box-shadow: 0 4px 15px rgba(109, 213, 250, 0.4); }
+
+/* ========================================================================= */
+/* 6. 结果、图表与小贴士 (无变化)                                           */
+/* ========================================================================= */
+/* ... 此部分样式保持不变 ... */
+.results { margin-top: 30px; width: 100%; }
+.results h3 { margin-bottom: 15px; font-size: 1.1em; color: #333; line-height: 1.5; }
+.results p { background-color: #F0F7FF; padding: 12px 15px; border-radius: 10px; font-size: 1.1em; font-weight: 700; margin-bottom: 8px; opacity: 0; transform: translateY(20px); }
+.cycle-chart-container { display: flex; width: 100%; height: 25px; margin-bottom: 15px; border-radius: 5px; overflow: hidden; opacity: 0; transform: scaleX(0); transform-origin: left; }
+.cycle-bar { height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8em; font-weight: bold; transition: filter 0.2s; }
+.cycle-bar:hover { filter: brightness(1.1); }
+.bar-onset { background-color: #FFDDAA; color: #a18048; }
+.bar-cycle { background-color: #89CFF0; }
+.bar-cycle:nth-child(even) { background-color: #6DD5FA; }
+.tip-container { margin-top: 25px; padding: 15px; background-color: #EAE6FF; border-radius: 12px; font-size: 0.95em; color: #534292; line-height: 1.6; opacity: 0; }
+.tip-container::before { content: '💡 '; font-weight: bold; }
+
+/* ========================================================================= */
+/* 7. 页脚与响应式设计 (无变化)                                             */
+/* ========================================================================= */
+/* ... 此部分样式保持不变 ... */
+footer { margin-top: 20px; font-size: 0.9em; color: #aaa; }
+@media (max-width: 480px) { body { padding: 10px; } .container { padding: 20px; } .digital-picker { width: 95%; height: 180px; } .number-list li { font-size: 2em; height: 60px; } .picker-highlight { height: 60px; } #calculateBtn { padding: 14px 30px; font-size: 1.1em; } .results h3 { font-size: 1em; } }
