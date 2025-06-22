@@ -52,9 +52,9 @@
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 font-sans flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
+<body class="bg-slate-50 text-slate-800 font-sans p-4 sm:p-6 lg:p-8">
 
-    <div class="bg-white rounded-3xl shadow-2xl shadow-slate-200 p-6 sm:p-10 w-full max-w-lg text-center relative overflow-hidden">
+    <div class="bg-white rounded-3xl shadow-2xl shadow-slate-200 p-6 sm:p-10 w-full max-w-lg text-center relative overflow-hidden mx-auto my-8 sm:my-12">
         
         <header>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">The Ultimate Sleep Cycle Calculator</h1>
@@ -97,10 +97,12 @@
             </div>
             
             <div class="results mt-8 text-left space-y-4" id="results">
+                <p class="text-slate-400 text-center py-4">Your calculated sleep times will appear here.</p>
                 <div class="cycle-chart-container" id="cycleChartContainer"></div>
                 </div>
             
             <div class="tip-container mt-6" id="tipContainer">
+                <p class="text-slate-400 text-center text-sm">A helpful sleep tip will be shown here after calculation.</p>
                 </div>
 
             <section class="mt-12 pt-8 border-t border-slate-200 text-left">
