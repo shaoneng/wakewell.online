@@ -33,6 +33,8 @@ HTML_TEMPLATE = """
       gtag('js', new Date());
       gtag('config', 'G-WQ3BLQSMKQ');
     </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9886602787991072"
+     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>__PAGE_TITLE__ | WakeWell</title>
