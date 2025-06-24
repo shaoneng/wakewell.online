@@ -3,18 +3,16 @@
 name: Daily Blog Post Generator
 
 on:
-  # 触发器1: 定时触发，使用 UTC 时间
-  # 这里的 '0 8 * * *' 代表每天的 UTC 时间早上8点运行
-  # 你可以根据需要修改，例如 '0 1 * * *' 代表凌晨1点
   schedule:
     - cron: '0 8 * * *'
-
-  # 触发器2: 手动触发
-  # 允许你在 Actions 页面手动点击 "Run workflow" 来测试
   workflow_dispatch:
 
 jobs:
   build-and-deploy:
+    # ADD THIS PERMISSIONS BLOCK HERE
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
     steps:
       # 第 1 步: 检出你的仓库代码
@@ -25,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # 可以使用 3.x
+          python-version: '3.10'
 
       # 第 3 步: 安装 Python 依赖库
       - name: Install dependencies
@@ -34,7 +32,6 @@ jobs:
           pip install -r requirements.txt
 
       # 第 4 步: 运行你的 Python 脚本来生成新文章
-      # 脚本会自动读取我们设置的 GitHub Secret
       - name: Run blog generation script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -46,6 +43,5 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add -A
-          # 如果没有新文件，git commit 会失败，我们允许它失败
           git commit -m "Automated: Add new blog post for $(date -u +'%Y-%m-%d')" || exit 0
           git push
