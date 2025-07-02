@@ -16,7 +16,58 @@ KEYWORDS = [
     "Deep sleep benefits", "REM sleep importance", "Fixing sleep schedule",
     "What is sleep inertia", "How sleep cycles work", "Napping effectively",
     "Foods that help sleep", "Blue light and sleep", "Creating a sleep sanctuary",
-    "Morning grogginess cure", "Natural sleep aids"
+    "Morning grogginess cure", "Natural sleep aids",
+    # Original Keywords
+    "Deep sleep benefits", "REM sleep importance", "Fixing sleep schedule",
+    "What is sleep inertia", "How sleep cycles work", "Napping effectively",
+    "Foods that help sleep", "Blue light and sleep", "Creating a sleep sanctuary",
+    "Morning grogginess cure", "Natural sleep aids",
+
+    # Expanded Keywords: Sleep Quality & Stages
+    "what are the stages of sleep", "how much deep sleep do you need",
+    "benefits of deep sleep for brain", "what happens during REM sleep",
+    "how to increase deep sleep naturally", "deep sleep vs light sleep",
+    "importance of REM sleep for memory", "symptoms of not enough deep sleep",
+    "REM sleep and dreams", "how to get more REM sleep",
+    "best mattress for deep sleep", "apps to track sleep cycles",
+    "sleep trackers with REM monitoring", "supplements to improve deep sleep",
+    "best pillows for restorative sleep", "can you get too much deep sleep",
+    "link between deep sleep and Alzheimer's", "does alcohol affect deep sleep",
+    "how rem sleep affects learning and creativity",
+
+    # Expanded Keywords: Sleep Schedule & Cycles
+    "how to fix a broken sleep schedule", "how to reset your internal clock",
+    "what is circadian rhythm", "how long is a sleep cycle in adults",
+    "waking up in the middle of a sleep cycle", "how to get over sleep inertia fast",
+    "why do I feel so tired when I wake up", "tips for waking up refreshed",
+    "how to create a consistent sleep routine", "weekend sleep schedule vs weekday",
+    "best sunrise alarm clocks", "light therapy lamps for circadian rhythm",
+    "sleep coaching services review", "apps for managing sleep schedules",
+    "how to fix sleep schedule for shift workers", "how long does it take to fix sleep schedule",
+    "is it better to wake up at the end of a sleep cycle", "foods that help fight morning grogginess",
+
+    # Expanded Keywords: Sleep Environment & Habits
+    "how long should a power nap be", "best time of day to nap",
+    "benefits of napping for productivity", "how does blue light affect melatonin",
+    "how to block blue light from screens", "ideal bedroom temperature for sleep",
+    "how to create a relaxing bedtime routine", "bedroom design for better sleep",
+    "effects of noise on sleep quality", "blue light blocking glasses review",
+    "best blackout curtains for bedroom", "top rated white noise machines",
+    "best earplugs for sleeping", "aromatherapy diffusers for relaxation",
+    "napping vs coffee for afternoon slump", "is it bad to nap for 2 hours",
+    "creating a sleep sanctuary on a budget", "do blue light filters on phones actually work",
+
+    # Expanded Keywords: Diet & Natural Aids
+    "what to eat before bed for better sleep", "foods that disrupt sleep",
+    "the role of magnesium in sleep", "melatonin-rich foods",
+    "herbal teas for sleep", "natural alternatives to sleeping pills",
+    "benefits of meditation for sleep", "yoga poses for better sleep",
+    "is melatonin safe to take every night", "best magnesium supplements for sleep",
+    "top rated melatonin gummies", "valerian root dosage for sleep",
+    "best chamomile tea brands", "meditation apps for sleep",
+    "recipe for a sleep-inducing smoothie", "does drinking warm milk actually help you sleep",
+    "side effects of natural sleep aids", "can you combine melatonin and magnesium"
+
 ]
 
 # --- 完整的HTML页面模板 (无变化) ---
